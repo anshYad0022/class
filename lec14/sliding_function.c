@@ -1,16 +1,16 @@
 #include <stdio.h>
 
 int maxSumArr(int arr[], int n, int k) {
-    int maxSum = 0;
+    
+    int currentSum = 0;
+    for (int i = 0; i < k; i++) {
+        currentSum += arr[i];
+    }
 
-    for (int i = 0; i <= n - k; i++) {
-        int currentSum = 0;
+    int maxSum = currentSum;
 
-
-        for (int j = 0; j < k; j++) {
-            currentSum += arr[i + j];
-        }
-
+    for (int i = k; i < n; i++) {
+        currentSum = currentSum - arr[i - k] + arr[i];  // remove left, add right
         if (currentSum > maxSum) {
             maxSum = currentSum;
         }
